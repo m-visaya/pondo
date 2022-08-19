@@ -12,7 +12,7 @@ async function fetchCrowdFunds() {
   return await fundFactoryContract.getFundMeContracts();
 }
 
-async function transferToContract(value) {
+async function transferToContract(address, value) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
 
   await signer.sendTransaction({
@@ -26,9 +26,10 @@ async function getCrowdFundDetails(address) {
   const owner = await contract.owner();
   const metadataURI = await contract.metadataURI();
   const goal = await contract.goal();
-  //   console.log(goal);
+  const weiBal = await provider.getBalance(contract.address);
+  const bal = parseInt(ethers.utils.formatEther(weiBal));
 
-  return { owner, metadataURI, goal };
+  return { owner, metadataURI, goal, bal };
 }
 
 export {
