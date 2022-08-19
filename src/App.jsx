@@ -27,6 +27,8 @@ function App() {
             return <CardsCrowdFunds address={item} />;
           })
         : "No crowdfunds"}
+
+
       <Foot />
     </div>
   );
