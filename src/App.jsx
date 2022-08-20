@@ -4,7 +4,8 @@ import { transferToContract, registerCrowdFund } from "./contracts/utils";
 import CardsCrowdFunds from "./components/CardsCrowdFunds";
 import Form from "./Form";
 
-import DiscoverMain from "./components/Main Discover/discover_ui";
+import DonateUI from "./components/Donate/donate_ui";
+import DiscoverUI from "./components/Main Discover/discover_ui";
 
 function App() {
   // const [totalFund, _] = useFetchFund();
@@ -22,6 +23,7 @@ function App() {
       <Form></Form>
 
       <DiscoverMain />
+      {/* <Form></Form> */}
       {/* {crowdFunds.length > 0 ? (
         crowdFunds.map((item, index) => {
           return <CardsCrowdFunds address={item} />;
