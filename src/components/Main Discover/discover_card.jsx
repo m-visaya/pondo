@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-function DiscoverCard() {
+function DiscoverCard({ address }) {
   return (
     <Link to={`/crowdfund/hello`}>
+      <h1>{address}</h1>
       <div className="">
         <a href="#!">
           <img

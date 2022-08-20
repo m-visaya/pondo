@@ -23,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
+      <Form></Form>
 
       <div className="flex mx-96 my-10 gap-10">
         <DiscoverCards />
