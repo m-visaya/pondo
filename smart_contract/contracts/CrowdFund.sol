@@ -11,7 +11,7 @@ contract CrowdFund {
     string public tag;
     uint public donationCount;
 
-    event Fund(address indexed _donor, uint value);
+    event Fund(address indexed _donor, uint value, uint balance);
 
     mapping(address => uint) public userFunds;
 
@@ -30,7 +30,7 @@ contract CrowdFund {
     receive() external payable {
         userFunds[msg.sender] += msg.value;
 
-        emit Fund(msg.sender, msg.value);
+        emit Fund(msg.sender, msg.value, address(this).balance);
         donationCount += 1;
 
         if (address(this).balance >= (goal * 1 ether)) {
