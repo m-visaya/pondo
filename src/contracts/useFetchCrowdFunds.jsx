@@ -13,9 +13,15 @@ function useFetchCrowdFunds() {
 
     get();
 
-    fundFactoryContract.on("CrowdFundPublished", async function (e) {
-      await get();
-    });
+    fundFactoryContract.once(
+      "CrowdFundPublished",
+      async function (owner, contractAddress) {
+        console.log(owner);
+        console.log(contractAddress);
+        alert("New CrowdFund Published:", owner, contractAddress);
+        get();
+      }
+    );
   }, []);
 
   return [crowdFunds, setCrowdFunds];

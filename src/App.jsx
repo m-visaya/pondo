@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useFetchFund } from "./contracts/useFetchFund";
 import { useFetchCrowdFunds } from "./contracts/useFetchCrowdFunds";
 import { transferToContract, registerCrowdFund } from "./contracts/utils";
 
-import Nav from "./navbar"
-import Foot from "./footer"
+import Nav from "./navbar";
+import Foot from "./footer";
 import CardsCrowdFunds from "./components/CardsCrowdFunds";
+import Form from "./Form";
 
 function App() {
   // const [totalFund, _] = useFetchFund();
@@ -21,13 +21,14 @@ function App() {
   return (
     <div className="App">
       <Nav />
-
-      {crowdFunds !== []
-        ? crowdFunds.map((item, index) => {
-            return <CardsCrowdFunds address={item} />;
-          })
-        : "No crowdfunds"}
-
+      <Form></Form>
+      {crowdFunds != [] ? (
+        crowdFunds.map((item, index) => {
+          return <CardsCrowdFunds address={item} />;
+        })
+      ) : (
+        <b>No crowdfunds</b>
+      )}
 
       <Foot />
     </div>
