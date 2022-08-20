@@ -1,4 +1,4 @@
-export default function pondoCards(){
+export default function PondoCards(){
     return(
         <div>
         <div className="flex">

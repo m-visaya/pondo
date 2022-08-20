@@ -1,4 +1,4 @@
-import YourPondos from './your_pondos'
+import YourPondos from './components_your_pondos'
 
 export default function DashboardPondos() {
     return(

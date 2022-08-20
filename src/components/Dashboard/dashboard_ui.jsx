@@ -1,23 +1,21 @@
-import Navigation from '../Shared/navbar'
+import Navbar from '../Shared/navbar'
 import Footer from '../Shared/footer'
-import DashboardNav from '../Dashboard/dashboard_nav'
-import DashboardWallet from '../Dashboard/wallet_settings'
-import DashboardAccount from '../Dashboard/account_settings'
-import DashboardPondos from '../Dashboard/dashboard_pondos'
+import DashboardLeftNav from '../Dashboard/dashboard_left_pane'
+import DashboardWallet from './dashboard_wallet_settings'
+import DashboardAccount from './dashboard_account_settings'
+import DashboardPondos from './dashboard_your_pondos'
 
 export default function Dashboard() {
     return(
         <div>
-            <Navigation/>
+            <Navbar/>
             <div className="px-32 py-5 max-w-screen-xl mx-auto">
                 <div className="grid grid-cols-3 gap-5">
                     <div className="col-span-1">
-                    <DashboardNav />
+                    <DashboardLeftNav />
                     </div>
                     <div className="col-span-2">
-                    <DashboardPondos/>    
-                    <DashboardWallet/>
-                    <DashboardAccount/>
+                    <DashboardPondos/> 
                     </div>
                 </div>
             </div>

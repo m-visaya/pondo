@@ -4,7 +4,8 @@ import App from "./App";
 import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import PondoMain from "./components/Pondo Page/pondo_main";
+
+import PondoInfo from "./components/Pondo/pondo_ui";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -12,7 +13,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="crowdfund/:address" element={<PondoMain />}></Route>
+      <Route path="crowdfund/:address" element={<PondoInfo />}></Route>
       <Route path="*" element={<h1>There's nothing here!</h1>} />
     </Routes>
   </BrowserRouter>

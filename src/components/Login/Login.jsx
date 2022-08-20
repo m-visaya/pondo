@@ -1,6 +1,6 @@
-import Logo from './Assets/Login/logo_vert.svg'
+import Logo from '../../Assets/Login/logo_vert.svg'
 
-export default function login() {
+export default function Login() {
     return(
         <div className="xs:bg-pondo-light-de md:bg-pondo-light min-h-screen flex items-center justify-center">
             <div className="bg-pondo-light-de rounded-[25px] md:px-20 md:py-16">
@@ -10,11 +10,10 @@ export default function login() {
                     <div className="grid grid-cols-1 mt-6">
                         <input type="text" className="rounded-full text-center bg-pondo-light py-2 my-3" placeholder="username" ></input>
                         <input type="password" className="rounded-full text-center bg-pondo-light py-2 mb-5" placeholder="password"></input>
-                        <button type="submit" className="rounded-full bg-pondo-blue py-2 text-pondo-light font-bold w-36 mx-auto">Sign in</button>
+                        <button type="submit" className="rounded-2xl bg-pondo-blue py-3 text-pondo-light font-bold w-36 mx-auto">Sign in</button>
                     </div>
                     </form>
-                    <p className="text-gray mt-5 text-md">Register</p>
-
+                    <p className="text-gray mt-5 text-center">Register</p>
                 </div>
             </div>
         </div>
