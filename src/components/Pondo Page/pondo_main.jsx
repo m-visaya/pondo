@@ -1,14 +1,14 @@
-import pondoDefault from './Assets/default_pondo.svg'
+import pondoDefault from '../../Assets/default_pondo.svg'
 
-export default function pondoMain () {
+export default function PondoMain () {
     return(
-        <div className="flex justify-center my-10">
-            <div className="max-w-md">
-                <img className="" src={pondoDefault}></img>
+        <div className="flex">
+            <div className="max-w-2xl">
+                <img className="rounded-[25px]" src={pondoDefault}></img>
                 <p className="text-pondo-blue text-start font-bold text-2xl my-3">
                 Help Ocram’s headache recovery
                 </p>
-                <div className ="bg-pondo-light-de rounded-full w-24 p-2 mb-3 text-[12px]">Categories</div>
+                <div className ="bg-pondo-light-de rounded-full w-24 p-2 mb-3 text-[12px] text-center">Medical</div>
                 <div>
                 <p className="text-start text-[14px] overflow-hidden">
                     Viverra justo nec ultrices dui sapien eget mi proin. Rutrum tellus pellentesque eu tincidunt
