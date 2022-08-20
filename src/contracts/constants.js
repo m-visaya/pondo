@@ -20,8 +20,7 @@ const fundMeContract = new ethers.Contract(factoryAddress, fundMeABI, provider);
 
 const web3Prefix = " https://dweb.link/ipfs/";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGU4MDMzMkE2MzQxY2MyMTZkQUFGMGE3NTc1MDA2MWVCMjFkYjNmZkMiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA5NTkyODAyNjEsIm5hbWUiOiJwb25kb1Rva2VuIn0.Ewk0CHvTphTVlyeInpAi5T-qMiSDzZk367hFA5YUDMo";
+const token = import.meta.env.VITE_WEB3KEY;
 
 const storage = new Web3Storage({ token });
 
