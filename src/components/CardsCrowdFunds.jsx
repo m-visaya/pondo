@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCrowdFundDetails, transferToContract } from "../contracts/utils";
+import { getCrowdFundDetails, transferToContract, cancelFund } from "../contracts/utils";
 import { useFetchFund } from "../contracts/useFetchFund";
 
 function CardsCrowdFunds({ address }) {
@@ -44,6 +44,7 @@ function CardsCrowdFunds({ address }) {
       />
       <button type="submit">Send</button>
       <br />
+      <button onClick={(e) => cancelFund(address)}>Cancel</button>
     </form>
   );
 }

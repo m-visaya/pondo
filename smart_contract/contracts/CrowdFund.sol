@@ -11,7 +11,7 @@ contract CrowdFund {
     string public tag;
     uint public donationCount;
 
-    event Fund(address indexed _donor, uint value);
+    event Fund(address indexed _donor, uint value, uint balance);
 
     mapping(address => uint) public userFunds;
 
@@ -30,7 +30,7 @@ contract CrowdFund {
     receive() external payable {
         userFunds[msg.sender] += msg.value;
 
-        emit Fund(msg.sender, msg.value);
+        emit Fund(msg.sender, msg.value, address(this).balance);
         donationCount += 1;
 
         if (address(this).balance >= (goal * 1 ether)) {
@@ -38,11 +38,13 @@ contract CrowdFund {
         }
     }
 
-    function withdraw(uint _value) public payable {
-        (bool sent, bytes memory data) = owner.call{value: _value * 1 ether}(
-            ""
-        );
-        require(sent, "Error sending eth.");
+    function cancelFund() external payable {
+        payable(msg.sender).transfer(userFunds[msg.sender]);
+        userFunds[msg.sender] = 0;
+    }
+
+    function withdraw() public payable {
+        payable(address(this)).transfer(address(this).balance);
         isActive = false;
     }
 }

@@ -6,7 +6,7 @@ import {
   storage,
   factoryAddress,
 } from "./constants";
-import { ethers, utils } from "ethers";
+import { ethers } from "ethers";
 
 const signer = provider.getSigner();
 
@@ -34,10 +34,21 @@ async function fetchCrowdFunds() {
 async function transferToContract(address, value) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
 
-  await signer.sendTransaction({
+  const res = await signer.sendTransaction({
     to: address,
     value: ethers.utils.parseEther(value),
   });
+  await res.wait();
+}
+
+async function cancelFund(address) {
+  await window.ethereum.request({ method: "eth_requestAccounts" });
+
+  const contract = new ethers.Contract(address, fundMeABI, signer);
+  transaction = await contract.cancelFund({ gasLimit: 3e7 });
+  receipt = await transaction.wait();
+  const weiBal = await provider.getBalance(contract.address);
+  const bal = parseInt(ethers.utils.formatEther(weiBal));
 }
 
 async function getCrowdFundDetails(address) {
@@ -45,8 +56,10 @@ async function getCrowdFundDetails(address) {
   const owner = await contract.owner();
   const metadataURI = await contract.metadataURI();
   const goal = await contract.goal();
+  const goalParsed = parseFloat(goal);
   const weiBal = await provider.getBalance(contract.address);
-  const bal = parseInt(ethers.utils.formatEther(weiBal));
+  const bal = parseFloat(ethers.utils.formatEther(weiBal));
+  const tag = await contract.tag();
 
   const data = await fetchMetaData(metadataURI);
   const image = data.imageURI;
@@ -55,7 +68,7 @@ async function getCrowdFundDetails(address) {
   const res = await fetch(metadataJSON);
   const json = await res.json();
 
-  return { owner, metadataURI, goal, bal, image, json };
+  return { address, owner, metadataURI, goalParsed, bal, image, json, tag };
 }
 
 async function fetchMetaData(cid) {
@@ -68,9 +81,40 @@ async function fetchMetaData(cid) {
   return { imageURI, metadataURI };
 }
 
+async function getCrowdFundBalance(address) {
+  const contract = new ethers.Contract(address, fundMeABI, provider);
+  const weiBal = await provider.getBalance(contract.address);
+  const bal = parseFloat(ethers.utils.formatEther(weiBal));
+
+  return parseFloat(bal);
+}
+
+function getFundMeContract(address) {
+  const contract = new ethers.Contract(address, fundMeABI, provider);
+
+  return contract;
+}
+
+function parseETH(val) {
+  return parseFloat(ethers.utils.formatEther(val));
+}
+
+async function isOwner(address) {
+  const user = provider.getSigner();
+  const owner = await user.getAddress();
+
+  const res = owner == address;
+
+  return res;
+}
+
 export {
   registerCrowdFund,
   fetchCrowdFunds,
   transferToContract,
   getCrowdFundDetails,
+  cancelFund,
+  getFundMeContract,
+  parseETH,
+  isOwner,
 };

@@ -4,11 +4,7 @@ import { transferToContract, registerCrowdFund } from "./contracts/utils";
 import CardsCrowdFunds from "./components/CardsCrowdFunds";
 import Form from "./Form";
 
-import DonateUI from "./components/Donate/donate_ui"
 import DiscoverUI from "./components/Main Discover/discover_ui"
-import Create from "./components/Create Pondo/create_pondo_s1"
-import Create2 from "./components/Create Pondo/create_pondo_s2"
-import CreateS from "./components/Create Pondo/create_pondo_summary"
 
 function App() {
   // const [totalFund, _] = useFetchFund();
@@ -23,9 +19,9 @@ function App() {
 
   return (
     <div className="App">
+      <Form></Form>
 
-      <DiscoverUI/>
-
+      <DiscoverUI />
       {/* <Form></Form> */}
       {/* {crowdFunds.length > 0 ? (
         crowdFunds.map((item, index) => {

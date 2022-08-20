@@ -3,7 +3,7 @@ import { fetchCrowdFunds } from "./utils";
 import { fundFactoryContract } from "./constants";
 
 function useFetchCrowdFunds() {
-  const [crowdFunds, setCrowdFunds] = useState([]);
+  const [crowdFunds, setCrowdFunds] = useState();
 
   useEffect(() => {
     const get = async () => {
@@ -14,12 +14,11 @@ function useFetchCrowdFunds() {
 
     get();
 
-    fundFactoryContract.once(
+    fundFactoryContract.on(
       "CrowdFundPublished",
       async function (owner, contractAddress) {
         console.log(owner);
         console.log(contractAddress);
-        alert("New CrowdFund Published:", owner, contractAddress);
         get();
       }
     );
