@@ -1,22 +1,19 @@
-/** @type {import('tailwindcss').Config} */ 
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
-      'purple': '#3f3cbb',
-      'midnight': '#121063',
-      'metal': '#565584',
-      'tahiti': '#3ab7bf',
-      'silver': '#ecebff',
-      'bubble-gum': '#ff77e9',
-      'bermuda': '#78dcca',
-      'pondo-blue' : '#2C6E8D'
+      'pondo-blue' : '#2C6E8D',
+      'pondo-blue-secondary' : '#738192',
+      'pondo-light' : '#EFEFEF',
+      'pondo-light-de' : '#DEDEDE',
+      'pondo-hover' : '#B8B8B8',
     },
     screens: {
       'xs': '280px',
