@@ -6,8 +6,8 @@ export default function DiscoverCards() {
 
   return (
     <div className="grid grid-cols-2 gap-x-10 gap-y-5 w-3/4">
-      {crowdFunds.map((value) => (
-        <DiscoverCard address={value} />
+      {[...Array(10).keys()].map(() => (
+        <DiscoverCard />
       ))}
     </div>
   );
