@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import Logo from "../../assets/Navbar/pondo_navbar.svg";
+import Logo from "../../Assets/Navbar/pondo_navbar.svg";
+import { Link } from "react-router-dom";
 
 export default function Nav() {
   const [state, setState] = useState(false);
@@ -8,13 +9,10 @@ export default function Nav() {
   useEffect(() => {
     const body = document.body;
 
-    // Disable scrolling
     const customBodyStyle = ["overflow-hidden", "lg:overflow-visible"];
     if (state) body.classList.add(...customBodyStyle);
-    // Enable scrolling
     else body.classList.remove(...customBodyStyle);
 
-    // Sticky strick
     const customStyle = ["sticky-nav", "fixed", "border-b"];
     window.onscroll = () => {
       if (window.scrollY > 80) navRef.current.classList.add(...customStyle);
@@ -26,9 +24,11 @@ export default function Nav() {
     <nav ref={navRef} className="bg-white w-full top-0 z-20">
       <div className="items-center px-4 max-w-screen-xl mx-auto lg:flex lg:px-8">
         <div className="flex items-center justify-between py-3 lg:py-4 lg:block">
-          <a href="">
-            <img src={Logo} className="w-28 sm:mx-auto" />
-          </a>
+          <Link to={`/`}>
+            <a>
+              <img src={Logo} className="w-28 sm:mx-auto" />
+            </a>
+          </Link>
           <div className="lg:hidden">
             <button
               className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
@@ -74,12 +74,11 @@ export default function Nav() {
           <div>
             <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
               <li className="mt-6 mb-8 lg:mt-0 lg:mb-0">
-                <a
-                  href=""
-                  className="py-3 px-4 text-gray-600 hover:text-indigo-600"
-                >
-                  Discover
-                </a>
+                <Link to={`/`}>
+                  <a className="py-3 px-4 text-gray-600 hover:text-indigo-600">
+                    Discover
+                  </a>
+                </Link>
               </li>
               <li className="mt-4 lg:mt-0">
                 <a
