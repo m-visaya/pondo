@@ -56,14 +56,14 @@ export default function Nav() {
               <div className={`flex-1 justify-between flex-row-reverse lg:overflow-visible lg:flex lg:pb-0 lg:pr-0 lg:h-auto ${ state ? 'h-screen pb-20 overflow-auto pr-4' : 'hidden'}`}>
                     <div>
                         <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
-                            <li className="mt-6 mb-8 lg:mt-0 lg:mb-0">
-                                <a href="" className="py-3 px-4 text-gray-600 hover:text-indigo-600">
+                            <li className="mt-4 lg:mt-0">
+                                <a href="" className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
                                     Discover
                                 </a>
                             </li>
                             <li className="mt-4 lg:mt-0">
                                 <a href="" className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
-                                    Sign in
+                                    My Pondo
                                 </a>
                             </li>
                             <li className="mt-8 lg:mt-0">
