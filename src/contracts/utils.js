@@ -40,6 +40,16 @@ async function transferToContract(address, value) {
   });
 }
 
+async function cancelFund(address) {
+  await window.ethereum.request({ method: "eth_requestAccounts" });
+
+  const contract = new ethers.Contract(address, fundMeABI, signer);
+  transaction = await contract.cancelFund({gasLimit: 3e7});
+  receipt = await transaction.wait();
+  const weiBal = await provider.getBalance(contract.address);
+  const bal = parseInt(ethers.utils.formatEther(weiBal));
+}
+
 async function getCrowdFundDetails(address) {
   const contract = new ethers.Contract(address, fundMeABI, provider);
   const owner = await contract.owner();
@@ -73,4 +83,5 @@ export {
   fetchCrowdFunds,
   transferToContract,
   getCrowdFundDetails,
+  cancelFund,
 };

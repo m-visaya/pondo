@@ -38,11 +38,13 @@ contract CrowdFund {
         }
     }
 
-    function withdraw(uint _value) public payable {
-        (bool sent, bytes memory data) = owner.call{value: _value * 1 ether}(
-            ""
-        );
-        require(sent, "Error sending eth.");
+    function cancelFund() external payable {
+        payable(msg.sender).transfer(userFunds[msg.sender]);
+        userFunds[msg.sender] = 0;
+    }
+
+    function withdraw() public payable {
+        payable(address(this)).transfer(address(this).balance);
         isActive = false;
     }
 }
