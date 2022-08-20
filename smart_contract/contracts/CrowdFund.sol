@@ -28,6 +28,7 @@ contract CrowdFund {
     }
 
     receive() external payable {
+        require(isActive);
         userFunds[msg.sender] += msg.value;
 
         emit Fund(msg.sender, msg.value, address(this).balance);
@@ -39,12 +40,14 @@ contract CrowdFund {
     }
 
     function cancelFund() external payable {
+        require(isActive);
         payable(msg.sender).transfer(userFunds[msg.sender]);
         userFunds[msg.sender] = 0;
     }
 
-    function withdraw() public payable {
-        payable(address(this)).transfer(address(this).balance);
+    function withdraw() external payable {
+        require(isActive);
+        owner.transfer(address(this).balance);
         isActive = false;
     }
 }
