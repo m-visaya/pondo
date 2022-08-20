@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useFetchCrowdFunds } from "./contracts/useFetchCrowdFunds";
 import { transferToContract, registerCrowdFund } from "./contracts/utils";
 
-import Nav from "./navbar";
-import Foot from "./footer";
+import Nav from "./components/Shared/navbar";
+import Foot from "./components/Shared/footer";
 import CardsCrowdFunds from "./components/CardsCrowdFunds";
 import Form from "./Form";
 
