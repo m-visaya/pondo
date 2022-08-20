@@ -2,8 +2,9 @@ import { useState } from "react";
 import { transferToContract, registerCrowdFund } from "./contracts/utils";
 
 function Form() {
-  const [metadataURI, setMetaDataURI] = useState("");
+  const [name, setName] = useState("");
   const [goal, setGoal] = useState("");
+  const [image, setImage] = useState("");
 
   return (
     <div>
@@ -11,13 +12,13 @@ function Form() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          registerCrowdFund(metadataURI, goal);
+          registerCrowdFund(name, goal, image);
         }}
       >
         <input
-          placeholder="metadataURI"
-          value={metadataURI}
-          onChange={(e) => setMetaDataURI(e.target.value)}
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
         <input
           type="number"
@@ -25,7 +26,11 @@ function Form() {
           value={goal}
           onChange={(e) => setGoal(e.target.value)}
         />
-        <input type="file" accept="image/*"></input>
+        <input 
+          type="file" 
+          accept="image/*" 
+          onChange={(e) => setImage(e.target.files[0])}
+        />
         <br />
         <br />
         <button type="submit">Register CrowdFund</button>
