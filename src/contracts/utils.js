@@ -1,31 +1,30 @@
-import { fundFactoryContract, provider, fundMeABI } from "./constants";
-import { ethers } from "ethers";
-import { Web3Storage } from 'web3.storage';
+import {
+  fundFactoryContract,
+  provider,
+  fundMeABI,
+  web3Prefix,
+  storage,
+  factoryAddress,
+} from "./constants";
+import { ethers, utils } from "ethers";
 
 const signer = provider.getSigner();
 
-async function registerCrowdFund(name, goal, image) {
-  const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGU4MDMzMkE2MzQxY2MyMTZkQUFGMGE3NTc1MDA2MWVCMjFkYjNmZkMiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjA5NDgwMDA4NTksIm5hbWUiOiJwb25kb1Rva2VuIn0.BYSnRR3fnTxHnWJ5h7ytJV3Smj5QbbD48RXVMdnNbzQ";
+async function registerCrowdFund(title, description, tag, owner, goal, image) {
+  const obj = { owner: owner, title: title, description: description };
+  const blob = new Blob([JSON.stringify(obj)], { type: "application/json" });
 
-  const storage = new Web3Storage({ token });
-  const obj = { name: name }
-  const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
-
-  const files = [
-    // new File(['contents-of-file-1'], 'plain-utf8.txt'),
-    new File([blob], 'hello.json'),
-    image
-  ]
+  const files = [new File([blob], "metadata.json"), image];
 
   const cid = await storage.put(files);
-  // console.log('https://dweb.link/ipfs/'+cid);
   const metadataURI = cid;
 
-  const res = await storage.get(cid);
-  const res_files = await res.files();
-
   await window.ethereum.request({ method: "eth_requestAccounts" });
-  await fundFactoryContract.createFundMeContract(metadataURI, parseInt(goal));
+  await fundFactoryContract.createFundMeContract(
+    metadataURI,
+    parseInt(goal),
+    tag
+  );
 }
 
 async function fetchCrowdFunds() {
@@ -49,7 +48,24 @@ async function getCrowdFundDetails(address) {
   const weiBal = await provider.getBalance(contract.address);
   const bal = parseInt(ethers.utils.formatEther(weiBal));
 
-  return { owner, metadataURI, goal, bal };
+  const data = await fetchMetaData(metadataURI);
+  const image = data.imageURI;
+  const metadataJSON = data.metadataURI;
+
+  const res = await fetch(metadataJSON);
+  const json = await res.json();
+
+  return { owner, metadataURI, goal, bal, image, json };
+}
+
+async function fetchMetaData(cid) {
+  const res = await storage.get(cid);
+  const files = await res.files();
+
+  const imageURI = web3Prefix + files[0].cid;
+  const metadataURI = web3Prefix + files[1].cid;
+
+  return { imageURI, metadataURI };
 }
 
 export {
