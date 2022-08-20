@@ -1,4 +1,5 @@
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 import Navigation from "../Shared/navbar";
 import Footer from "../Shared/footer";
@@ -7,9 +8,17 @@ import PondoOrganizer from "../Pondo/profile_avatar";
 import PondoComments from "../Pondo/pondo_comments";
 import PondoTargetGoal from "../Pondo/pondo_target_goal";
 
+import { getFundMeContract, parseETH } from "../../contracts/utils";
+
 export default function ProjectPondo() {
+  const [balance, setBalance] = useState(null);
   const loc = useLocation();
   const details = loc.state;
+  const contract = getFundMeContract(details.address);
+  contract.on("Fund", async (donor, value, balance) => {
+    const bal = parseETH(balance);
+    setBalance(bal);
+  });
 
   return (
     <div>
@@ -33,7 +42,7 @@ export default function ProjectPondo() {
             <PondoComments />
           </div>
           <div>
-            <PondoTargetGoal balance={details.bal} goal={details.goalParsed} />
+            <PondoTargetGoal info={details} balance={balance} />
           </div>
         </div>
       </div>

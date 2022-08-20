@@ -4,7 +4,6 @@ import { transferToContract, registerCrowdFund } from "./contracts/utils";
 import CardsCrowdFunds from "./components/CardsCrowdFunds";
 import Form from "./Form";
 
-import DonateUI from "./components/Donate/donate_ui";
 import DiscoverUI from "./components/Main Discover/discover_ui";
 
 function App() {
@@ -22,7 +21,7 @@ function App() {
     <div className="App">
       <Form></Form>
 
-      <DiscoverMain />
+      <DiscoverUI />
       {/* <Form></Form> */}
       {/* {crowdFunds.length > 0 ? (
         crowdFunds.map((item, index) => {

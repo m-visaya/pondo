@@ -37,8 +37,7 @@ function DiscoverCard({ address }) {
                 {crowdFundDetails.json.description}
               </p>
               <p className="text-pondo-blue font-bold text-start text-xl mb-4">
-                ETH {parseFloat(crowdFundDetails.bal)} of ETH{" "}
-                {parseFloat(crowdFundDetails.goalParsed)}
+                ETH {crowdFundDetails.bal} of ETH {crowdFundDetails.goalParsed}
               </p>
             </div>
           </div>
