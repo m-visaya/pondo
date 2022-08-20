@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import PondoInfo from "./components/Pondo/pondo_ui";
 import DonateUI from "./components/Donate/donate_ui";
+import CreatePondoUI from "./components/Create Pondo/create_pondo_ui";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -15,6 +16,7 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="crowdfund/:address" element={<PondoInfo />}></Route>
       <Route path="donate/:address" element={<DonateUI />}></Route>
+      <Route path="create" element={<CreatePondoUI />}></Route>
       <Route path="*" element={<h1>There's nothing here!</h1>} />
     </Routes>
   </BrowserRouter>
