@@ -7,10 +7,10 @@ export default function DiscoverMain (){
     return(
         <div>
             <Navbar/>
-            <div className="px-8 py-5 max-w-screen-xl mx-auto">
-            <p className="text-[28pt] font-bold mt-10 mb-7 text-pondo-blue">Discover Pondos</p>
-            <div className="grid grid-cols-3 gap-x-16 mb-32">
-            <div className="col-span-2">
+            <div className="md:px-8 md:py-5 max-w-screen-xl mx-auto">
+            <p className="xs:text-[22pt] md:text-[28pt] font-bold xs:px-3 xs:mt-3 xs:mb-10 mb-7 text-pondo-blue">Discover Pondos</p>
+            <div className="grid xs:grid-cols-1 lg:grid-cols-3  lg:gap-x-16 lg:mb-32">
+            <div className="xs:px-3 col-span-2">
             <Discover/>
             </div>
             <div className="col-span-1">
