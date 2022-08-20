@@ -1,8 +1,8 @@
-import Footer from "./assets/Footer/pondo_footer.svg"
-import Meta from "./assets/Footer/meta-ico.svg"
-import Twitter from "./assets/Footer/twitter-ico.svg"
-import Youtube from "./assets/Footer/youtube-ico.svg"
-import Github from "./assets/Footer/github-ico.svg"
+import Footer from "../../Assets/Footer/pondo_footer.svg"
+import Meta from "../../Assets/Footer/meta-ico.svg"
+import Twitter from "../../Assets/Footer/twitter-ico.svg"
+import Youtube from "../../Assets/Footer/youtube-ico.svg"
+import Github from "../../Assets/Footer/github-ico.svg"
 
 export default function Foot() {
 
