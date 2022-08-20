@@ -19,8 +19,9 @@ function App() {
 
   return (
     <div className="App">
+      <Form></Form>
+
       <DiscoverMain />
-      {/* <Form></Form> */}
       {/* {crowdFunds.length > 0 ? (
         crowdFunds.map((item, index) => {
           return <CardsCrowdFunds address={item} />;

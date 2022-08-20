@@ -44,7 +44,7 @@ async function cancelFund(address) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
 
   const contract = new ethers.Contract(address, fundMeABI, signer);
-  transaction = await contract.cancelFund({gasLimit: 3e7});
+  transaction = await contract.cancelFund({ gasLimit: 3e7 });
   receipt = await transaction.wait();
   const weiBal = await provider.getBalance(contract.address);
   const bal = parseInt(ethers.utils.formatEther(weiBal));
@@ -55,8 +55,10 @@ async function getCrowdFundDetails(address) {
   const owner = await contract.owner();
   const metadataURI = await contract.metadataURI();
   const goal = await contract.goal();
+  const goalParsed = parseFloat(goal);
   const weiBal = await provider.getBalance(contract.address);
-  const bal = parseInt(ethers.utils.formatEther(weiBal));
+  const bal = parseFloat(ethers.utils.formatEther(weiBal));
+  const tag = await contract.tag();
 
   const data = await fetchMetaData(metadataURI);
   const image = data.imageURI;
@@ -65,7 +67,7 @@ async function getCrowdFundDetails(address) {
   const res = await fetch(metadataJSON);
   const json = await res.json();
 
-  return { owner, metadataURI, goal, bal, image, json };
+  return { owner, metadataURI, goalParsed, bal, image, json, tag };
 }
 
 async function fetchMetaData(cid) {
