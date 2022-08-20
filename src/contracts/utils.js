@@ -8,7 +8,6 @@ import {
 } from "./constants";
 import { ethers } from "ethers";
 
-const signer = provider.getSigner();
 
 async function registerCrowdFund(title, description, tag, owner, goal, image) {
   const obj = { owner: owner, title: title, description: description };
@@ -33,6 +32,7 @@ async function fetchCrowdFunds() {
 
 async function transferToContract(address, value) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = provider.getSigner();
 
   const res = await signer.sendTransaction({
     to: address,
@@ -43,12 +43,20 @@ async function transferToContract(address, value) {
 
 async function cancelFund(address) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = provider.getSigner();
 
   const contract = new ethers.Contract(address, fundMeABI, signer);
-  transaction = await contract.cancelFund({ gasLimit: 3e7 });
-  receipt = await transaction.wait();
-  const weiBal = await provider.getBalance(contract.address);
-  const bal = parseInt(ethers.utils.formatEther(weiBal));
+  const res = await contract.cancelFund({ gasLimit: 3e7 });
+  await res.wait();
+}
+
+async function withdraw() {
+  await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = provider.getSigner();
+  
+  const contract = new ethers.Contract(address, fundMeABI, signer);
+  const res = await contract.withdraw({ gasLimit: 3e7 });
+  await res.wait();
 }
 
 async function getCrowdFundDetails(address) {
@@ -117,4 +125,5 @@ export {
   getFundMeContract,
   parseETH,
   isOwner,
+  withdraw,
 };
