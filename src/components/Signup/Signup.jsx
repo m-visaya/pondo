@@ -1,4 +1,4 @@
-import Logo from './Assets/Login/logo_vert.svg'
+import Logo from '../../Assets/Login/logo_vert.svg'
 
 export default function Signup() {
     return(
@@ -12,11 +12,10 @@ export default function Signup() {
                         <input type="email" className="rounded-full md:col-span-2 text-center bg-pondo-light py-2 my-3" placeholder="Email address" ></input>
                         <input type="password" className="rounded-full text-center bg-pondo-light py-2 my-3" placeholder="Password"></input>
                         <input type="password" className="rounded-full text-center bg-pondo-light py-2 my-3" placeholder="Confirm Password"></input>
-                        <button type="submit" className="rounded-full md:col-span-2 bg-pondo-blue py-2 text-pondo-light font-bold mt-5 w-36 mx-auto">Sign up</button>
+                        <button type="submit" className="rounded-2xl md:col-span-2 bg-pondo-blue py-3 text-pondo-light font-bold mt-5 w-36 mx-auto">Sign up</button>
                     </div>
                     </form>
-                    <p className="text-gray mt-5 text-md">Return to Login</p>
-
+                    <p className="text-gray mt-5 text-center">Return to Login</p>
                 </div>
             </div>
         </div>
