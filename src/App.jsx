@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <Nav />
       <Form></Form>
-      {crowdFunds != [] ? (
+      {crowdFunds.length > 0 ? (
         crowdFunds.map((item, index) => {
           return <CardsCrowdFunds address={item} />;
         })

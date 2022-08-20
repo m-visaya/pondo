@@ -19,7 +19,7 @@ function useFetchFund(address) {
 
     contract.on("Fund", async function (a, b) {
       get();
-      console.log($`contract {address} received {b} from {a}`);
+      console.log(`contract ${address} received ${b} from ${a}`);
     });
   }, []);
 

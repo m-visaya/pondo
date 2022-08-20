@@ -8,6 +8,7 @@ function useFetchCrowdFunds() {
   useEffect(() => {
     const get = async () => {
       let data = await fetchCrowdFunds();
+      console.log(data);
       setCrowdFunds(data);
     };
 
