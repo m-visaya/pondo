@@ -8,7 +8,7 @@ export default function PondoMain({
   return (
     <div className="flex">
       <div className="max-w-2xl">
-        <img className="rounded-[25px]" src={image}></img>
+        <img className="rounded-[25px] min-w-full" src={image}></img>
         <p className="text-pondo-blue text-start font-bold text-2xl my-3">
           {title}
         </p>

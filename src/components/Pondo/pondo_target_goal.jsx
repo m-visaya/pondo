@@ -20,13 +20,13 @@ export default function PondoGoal({ info, balance }) {
           <div className="p-5">
             <div className="text-start">
               <p className="text-pondo-blue font-bold text-[24pt]">
-                ETH {info.bal}
+                {info.bal} ETH
               </p>
               <p className="text-pondo-blue font-bold text-[16pt] leading-5">
                 raised of
               </p>
               <p className="text-pondo-blue font-bold text-[18pt]">
-                ETH {info.goalParsed} goal
+                {info.goalParsed} ETH goal
               </p>
             </div>
             {withdrawable ? (
