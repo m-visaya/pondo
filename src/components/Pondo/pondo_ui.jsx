@@ -23,9 +23,9 @@ export default function ProjectPondo() {
   return (
     <div>
       <Navigation />
-      <div className="px-32 py-20 max-w-screen-xl mx-auto">
-        <div className="grid grid-cols-3 gap-12">
-          <div className="col-span-2">
+      <div className="xs:px-4 md:px-32 xs:py-10 md:py-20 max-w-screen-xl mx-auto">
+        <div className="grid lg:grid-cols-3 xs:gap-0 md:gap-8 lg:gap-12">
+          <div className="lg:col-span-2 xs:mb-12">
             <PondoInfo
               image={details.image}
               title={details.json.title}

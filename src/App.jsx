@@ -4,6 +4,8 @@ import { transferToContract, registerCrowdFund } from "./contracts/utils";
 
 import DiscoverUI from "./components/Main Discover/discover_ui";
 
+
+
 function App() {
   return (
     <div className="App">
