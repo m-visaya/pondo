@@ -21,3 +21,43 @@
         <li><a href="https://tailwindcss.com/">TailwindCSS</a></li>
     </ul>
 </div>
+
+<div>
+   <h2>Compling Instructions</h2>
+   <h3>Clone the repository</h3>
+   In your prefered working directory open a terminal and type:
+   <br><br>
+  
+    https://github.com/m-visaya/pondo.git
+  
+   <h3>Install the dependencies</h3>
+   Install the frontend and backend modules
+   <br><br>
+  
+    ./npm install
+    ./smart_contract/npm install
+  
+   <h3>Configure environment variables</h3>
+   Create a .env file in the root of the directory and include the API key for your web3.storage:
+   <br><br>
+  
+    VITE_WEB3KEY="web3.API.key"
+  
+  
+   <h3>Initialize the workspace</h3>
+   To initialize the workspace open three (3) separate terminal and provide the each of the commands below
+   <br><br>
+  
+     ./npm run dev
+     ./smart-contract/npx hardhat node 
+     ./smart-contract/npx hardhat run scripts/deploy.js --network localhost
+
+
+The commands above will assign the frontend url and creates a ethereum testnet in the local network, 10 test accounts is available for development use. Import these test accounts in a development wallet and start througth the frontend url 
+   
+</div>
+
+<div>
+    <h2>License</h2>
+    Distributed under the GPL3 License. See LICENSE for more information.
+</div>
