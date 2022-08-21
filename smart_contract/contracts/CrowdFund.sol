@@ -50,4 +50,8 @@ contract CrowdFund {
         owner.transfer(address(this).balance);
         isActive = false;
     }
+
+    function getUserFund(address _donator) public view returns (uint) {
+        return userFunds[_donator];
+    }
 }

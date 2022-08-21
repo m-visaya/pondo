@@ -18,7 +18,7 @@ function DiscoverCard({ address, crowdFunds }) {
 
   return (
     <>
-      {(crowdFundDetails && crowdFundDetails?.isActive)? (
+      {crowdFundDetails && crowdFundDetails?.isActive ? (
         <Link to={`/crowdfund/${address}`} state={crowdFundDetails}>
           <div className="">
             <a href="#!">
@@ -41,7 +41,9 @@ function DiscoverCard({ address, crowdFunds }) {
             </div>
           </div>
         </Link>
-      ) :!crowdFundDetails?.isActive?"": (
+      ) : !crowdFundDetails?.isActive ? (
+        ""
+      ) : (
         <DiscoverCardSkeleton></DiscoverCardSkeleton>
       )}
     </>

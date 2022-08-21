@@ -16,7 +16,7 @@ export default function DonateUI() {
     e.preventDefault();
     if (!(amount > 0)) return;
 
-    await transferToContract(details.address, amount);
+    await transferToContract(details.address, amount.toString());
 
     navigate(`/crowdfund/${details.address}`, { state: details });
   }

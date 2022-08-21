@@ -18,7 +18,7 @@ export default function PondoCards({ address }) {
 
   return (
     <>
-      {(crowdFundDetails && crowdFundDetails?.isActive)? (
+      {crowdFundDetails && crowdFundDetails?.isActive ? (
         <Link to={`/crowdfund/${address}`} state={crowdFundDetails}>
           <div>
             <div className="flex">
@@ -43,7 +43,9 @@ export default function PondoCards({ address }) {
             </div>
           </div>
         </Link>
-      ):!crowdFundDetails?.isActive?"": (
+      ) : !crowdFundDetails?.isActive ? (
+        ""
+      ) : (
         <DashCardSkeleton />
       )}
     </>

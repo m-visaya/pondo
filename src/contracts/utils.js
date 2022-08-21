@@ -79,6 +79,7 @@ async function getCrowdFundDetails(address) {
   const goal = await contract.goal();
   const isActive = await contract.isActive();
   const goalParsed = parseFloat(goal);
+  const count = parseInt(await contract.donationCount());
   const weiBal = await provider.getBalance(contract.address);
   const bal = parseFloat(ethers.utils.formatEther(weiBal));
   let tag = await contract.tag();
@@ -101,6 +102,7 @@ async function getCrowdFundDetails(address) {
     json,
     tag,
     isActive,
+    count,
   };
 }
 
@@ -145,15 +147,12 @@ function getSigner() {
   return provider.getSigner();
 }
 
-// async function test() {
-//   let filter = {
-//     address: factoryAddress,
-//     topics: [utils.id("CrowdFundPublished(address,address,bytes32)")],
-//   };
-//   const res = await fundFactoryContract.queryFilter(filter);
-//   console.log(res);
-//   console.log("hello");
-// }
+async function getUserFunds(user, address) {
+  const contract = getFundMeContract(address);
+  const amount = await contract.getUserFund(user);
+
+  return parseFloat(amount);
+}
 
 export {
   registerCrowdFund,
@@ -166,4 +165,5 @@ export {
   isOwner,
   withdraw,
   getSigner,
+  getUserFunds,
 };

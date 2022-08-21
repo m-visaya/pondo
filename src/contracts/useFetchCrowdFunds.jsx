@@ -16,7 +16,6 @@ function useFetchCrowdFunds(tag, owner) {
     fundFactoryContract.on(
       "CrowdFundPublished",
       async function (owner, contractAddress) {
-        console.log("CrowdFundPublished");
         get();
       }
     );
