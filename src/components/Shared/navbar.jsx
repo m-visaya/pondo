@@ -84,14 +84,16 @@ export default function Nav() {
                   </a>
                 </Link>
               </li>
-              <li className="mt-4 lg:mt-0">
-                <a
-                  href=""
-                  className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
-                >
-                  My Pondos
-                </a>
-              </li>
+              <Link to={`/mypondos`}>
+                <li className="mt-4 lg:mt-0">
+                  <a
+                    href=""
+                    className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                  >
+                    My Pondos
+                  </a>
+                </li>
+              </Link>
               <Link to={`/create`}>
                 <li className="mt-8 lg:mt-0">
                   <a

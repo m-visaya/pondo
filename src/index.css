@@ -15,3 +15,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@layer components {
+  .tag-chip {
+    @apply bg-pondo-light-de hover:bg-pondo-blue hover:text-white rounded-[25px] py-2 mb-3
+  }
+}

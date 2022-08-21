@@ -8,7 +8,7 @@ contract CrowdFund {
     uint public goal;
     bool public isActive = true;
     bool public goalReached = false;
-    string public tag;
+    bytes32 public tag;
     uint public donationCount;
 
     event Fund(address indexed _donor, uint value, uint balance);
@@ -19,7 +19,7 @@ contract CrowdFund {
         address _owner,
         string memory _metadataURI,
         uint _goal,
-        string memory _tag
+        bytes32 _tag
     ) {
         owner = payable(_owner);
         metadataURI = _metadataURI;
