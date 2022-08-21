@@ -6,6 +6,8 @@ import Form from "./Form";
 
 import DiscoverUI from "./components/Main Discover/discover_ui"
 
+
+
 function App() {
   // const [totalFund, _] = useFetchFund();
   // const [inputDonate, setInputDonate] = useState("");
@@ -19,8 +21,6 @@ function App() {
 
   return (
     <div className="App">
-      <Form></Form>
-
       <DiscoverUI />
       {/* <Form></Form> */}
       {/* {crowdFunds.length > 0 ? (
