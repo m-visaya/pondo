@@ -56,6 +56,7 @@ export default function CreateSummary({ details, tag }) {
               </button>
             </Link>
           </div>
+          <p className="text-start text-[14px] text-pondo-muted mt-4">Due to the nature of IPFS your Pondo might take a minute or two before it appears in the discover.</p>
         </div>
       </div>
     </div>

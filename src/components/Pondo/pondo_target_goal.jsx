@@ -51,6 +51,8 @@ export default function PondoGoal({ info, balance }) {
             <div className="bg-pondo-light-de hover:bg-pondo-hover rounded-[25px] p-3 mb-3">
               <button className="font-bold">Share</button>
             </div>
+
+
           </div>
         </div>
       </div>

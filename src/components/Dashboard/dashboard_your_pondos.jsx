@@ -9,7 +9,7 @@ export default function DashboardPondos() {
   return (
     <div className="flex">
       <div>
-        <p className="font-bold text-[20pt] text-pondo-blue text-start">
+        <p className="font-bold text-[28pt] text-pondo-blue text-start">
           Your Pondos
         </p>
         <div className="grid grid-cols-3 gap-4 my-6">

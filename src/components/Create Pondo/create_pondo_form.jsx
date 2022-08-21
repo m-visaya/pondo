@@ -2,7 +2,7 @@ import { useState } from "react";
 
 export default function CreatePondoForm({ setDetails, setCurrView }) {
   const [image, setImage] = useState();
-  const [name, setName] = useState();
+  const [name, setName] = useState("Anonymous Pon");
   const [imageURL, setImageURL] = useState();
   const [title, setTitle] = useState();
   const [description, setDescription] = useState();
@@ -41,6 +41,7 @@ export default function CreatePondoForm({ setDetails, setCurrView }) {
             <input
               className=" rounded-xl bg-pondo-light py-3 px-4 my-3 w-full"
               type="text"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             ></input>
             <p className=" text-[14pt] text-start mt-2">Pondo Title</p>
@@ -67,7 +68,7 @@ export default function CreatePondoForm({ setDetails, setCurrView }) {
                 type="submit"
                 className="rounded-full bg-pondo-blue text-pondo-light font-bold w-36 py-3 mt-6"
               >
-                Submit
+                Continue
               </button>
             </div>
           </form>
