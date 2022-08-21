@@ -49,6 +49,7 @@ async function transferToContract(address, value) {
   const res = await signer.sendTransaction({
     to: address,
     value: ethers.utils.parseEther(value),
+    gasLimit: 3e7,
   });
   await res.wait();
 }
@@ -62,7 +63,7 @@ async function cancelFund(address) {
   await res.wait();
 }
 
-async function withdraw() {
+async function withdraw(address) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
   const signer = getSigner();
 
@@ -76,6 +77,7 @@ async function getCrowdFundDetails(address) {
   const owner = await contract.owner();
   const metadataURI = await contract.metadataURI();
   const goal = await contract.goal();
+  const isActive = await contract.isActive();
   const goalParsed = parseFloat(goal);
   const weiBal = await provider.getBalance(contract.address);
   const bal = parseFloat(ethers.utils.formatEther(weiBal));
@@ -89,7 +91,17 @@ async function getCrowdFundDetails(address) {
   const res = await fetch(metadataJSON);
   const json = await res.json();
 
-  return { address, owner, metadataURI, goalParsed, bal, image, json, tag };
+  return {
+    address,
+    owner,
+    metadataURI,
+    goalParsed,
+    bal,
+    image,
+    json,
+    tag,
+    isActive,
+  };
 }
 
 async function fetchMetaData(cid) {

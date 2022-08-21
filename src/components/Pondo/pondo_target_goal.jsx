@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import { isOwner } from "../../contracts/utils";
+import { isOwner, withdraw } from "../../contracts/utils";
 
 export default function PondoGoal({ info, balance }) {
   if (balance) info.bal = balance;
@@ -31,7 +31,10 @@ export default function PondoGoal({ info, balance }) {
             </div>
             {withdrawable ? (
               <div className="bg-pondo-blue  text-pondo-light rounded-[25px] p-3 mb-3 mt-6">
-                <button className="font-bold hover:text-pondo-blue-secondary">
+                <button
+                  className="font-bold hover:text-pondo-blue-secondary"
+                  onClick={() => withdraw(info.address)}
+                >
                   Withdraw Funds
                 </button>
               </div>

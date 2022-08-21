@@ -25,7 +25,7 @@ export default function Dashboard() {
           <div className="col-span-1">
             <DashboardLeftNav userAddr={userAddr} />
           </div>
-          <div className="col-span-2">
+          <div className="col-span-2 min-h-[50rem]">
             <DashboardPondos />
           </div>
         </div>
