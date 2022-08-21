@@ -15,6 +15,7 @@ module.exports = {
       'pondo-light-de' : '#DEDEDE',
       'pondo-hover' : '#B8B8B8',
       'pondo-muted' : '#A7A7A7',
+      'pondo-yellow': '#ecc26d'
     },
     screens: {
       'xs': '280px',

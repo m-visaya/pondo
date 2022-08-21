@@ -7,6 +7,8 @@ import PondoInfo from "./pondo_info";
 import PondoOrganizer from "../Pondo/profile_avatar";
 import PondoComments from "../Pondo/pondo_comments";
 import PondoTargetGoal from "../Pondo/pondo_target_goal";
+import PondoContract from "./pondo_contract_adr";
+import PondoTotalPon from "./pondo_total_pon";
 
 import { getFundMeContract, parseETH } from "../../contracts/utils";
 
@@ -32,14 +34,30 @@ export default function ProjectPondo() {
               description={details.json.description}
               category={details.tag}
             />
-            <p className="text-[18pt] text-pondo-blue font-bold mt-16 mb-12">
-              Pondo Organizer
+            <p className="text-[18pt] text-pondo-blue font-bold mt-14 mb-8">
+              Pondo Information
             </p>
-            <PondoOrganizer name={details.json.owner} />
-            <p className="text-[18pt] text-pondo-blue font-bold mt-12 mb-12">
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+              <PondoOrganizer name={details.json.owner} />
+              </div>
+              <div>
+              <PondoContract />
+              </div>
+              <div>
+              <PondoTotalPon />
+              </div>
+            </div>
+            <p className="text-[18pt] text-pondo-blue font-bold mt-12 mb-8">
               Pon-donor Words
             </p>
+            <div className="grid grid-cols-1 gap-y-6">
             <PondoComments />
+            <PondoComments />
+            <PondoComments />
+            <PondoComments />
+            </div>
+
           </div>
           <div>
             <PondoTargetGoal info={details} balance={balance} />
