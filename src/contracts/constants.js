@@ -18,7 +18,7 @@ const fundFactoryContract = new ethers.Contract(
 
 const fundMeContract = new ethers.Contract(factoryAddress, fundMeABI, provider);
 
-const web3Prefix = " https://dweb.link/ipfs/";
+const web3Prefix = "https://w3s.link/ipfs/";
 
 const token = import.meta.env.VITE_WEB3KEY;
 
