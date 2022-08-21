@@ -45,7 +45,7 @@
   
   
    <h3>Initialize the workspace</h3>
-   To initialize the workspace open three (3) separate terminal and provide the each of the commands below
+   To initialize the workspace open three (3) separate terminal and provide each one of the commands below
    <br><br>
   
      ./npm run dev
