@@ -6,9 +6,8 @@ import {
   storage,
   factoryAddress,
 } from "./constants";
-import { ethers } from "ethers";
-
-const signer = provider.getSigner();
+import { ethers, utils } from "ethers";
+import { hexZeroPad } from "ethers/src.ts/utils";
 
 async function registerCrowdFund(title, description, tag, owner, goal, image) {
   const obj = { owner: owner, title: title, description: description };
@@ -23,32 +22,54 @@ async function registerCrowdFund(title, description, tag, owner, goal, image) {
   await fundFactoryContract.createFundMeContract(
     metadataURI,
     parseInt(goal),
-    tag
+    utils.formatBytes32String(tag)
   );
 }
 
-async function fetchCrowdFunds() {
-  return await fundFactoryContract.getFundMeContracts();
+async function fetchCrowdFunds(tag, owner) {
+  let filter = {
+    address: factoryAddress,
+    topics: [utils.id("CrowdFundPublished(address,address,bytes32)")],
+  };
+  if (tag) {
+    filter.topics.push(null, utils.formatBytes32String(tag));
+  } else if (owner) {
+    let signer = await getSigner().getAddress();
+    filter.topics.push(hexZeroPad(signer, 32));
+  }
+  let res = await fundFactoryContract.queryFilter(filter);
+  res = res.map((val) => val.args[1]);
+  return res;
 }
 
 async function transferToContract(address, value) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = getSigner();
 
   const res = await signer.sendTransaction({
     to: address,
     value: ethers.utils.parseEther(value),
+    gasLimit: 3e7,
   });
   await res.wait();
 }
 
 async function cancelFund(address) {
   await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = getSigner();
 
   const contract = new ethers.Contract(address, fundMeABI, signer);
-  transaction = await contract.cancelFund({ gasLimit: 3e7 });
-  receipt = await transaction.wait();
-  const weiBal = await provider.getBalance(contract.address);
-  const bal = parseInt(ethers.utils.formatEther(weiBal));
+  const res = await contract.cancelFund({ gasLimit: 3e7 });
+  await res.wait();
+}
+
+async function withdraw(address) {
+  await window.ethereum.request({ method: "eth_requestAccounts" });
+  const signer = getSigner();
+
+  const contract = new ethers.Contract(address, fundMeABI, signer);
+  const res = await contract.withdraw({ gasLimit: 3e7 });
+  await res.wait();
 }
 
 async function getCrowdFundDetails(address) {
@@ -56,10 +77,12 @@ async function getCrowdFundDetails(address) {
   const owner = await contract.owner();
   const metadataURI = await contract.metadataURI();
   const goal = await contract.goal();
+  const isActive = await contract.isActive();
   const goalParsed = parseFloat(goal);
   const weiBal = await provider.getBalance(contract.address);
   const bal = parseFloat(ethers.utils.formatEther(weiBal));
-  const tag = await contract.tag();
+  let tag = await contract.tag();
+  tag = utils.parseBytes32String(tag);
 
   const data = await fetchMetaData(metadataURI);
   const image = data.imageURI;
@@ -68,7 +91,17 @@ async function getCrowdFundDetails(address) {
   const res = await fetch(metadataJSON);
   const json = await res.json();
 
-  return { address, owner, metadataURI, goalParsed, bal, image, json, tag };
+  return {
+    address,
+    owner,
+    metadataURI,
+    goalParsed,
+    bal,
+    image,
+    json,
+    tag,
+    isActive,
+  };
 }
 
 async function fetchMetaData(cid) {
@@ -100,13 +133,27 @@ function parseETH(val) {
 }
 
 async function isOwner(address) {
-  const user = provider.getSigner();
+  const user = getSigner();
   const owner = await user.getAddress();
 
   const res = owner == address;
 
   return res;
 }
+
+function getSigner() {
+  return provider.getSigner();
+}
+
+// async function test() {
+//   let filter = {
+//     address: factoryAddress,
+//     topics: [utils.id("CrowdFundPublished(address,address,bytes32)")],
+//   };
+//   const res = await fundFactoryContract.queryFilter(filter);
+//   console.log(res);
+//   console.log("hello");
+// }
 
 export {
   registerCrowdFund,
@@ -117,4 +164,6 @@ export {
   getFundMeContract,
   parseETH,
   isOwner,
+  withdraw,
+  getSigner,
 };

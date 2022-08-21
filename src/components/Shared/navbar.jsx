@@ -75,31 +75,35 @@ export default function Nav() {
           <div>
             <ul className="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
               <li className="mt-4 lg:mt-0">
-              <Link to={`/`}>
-                <a
-                  href=""
-                  className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
-                >
-                  Discover
-                </a>
+                <Link to={`/`}>
+                  <a
+                    href=""
+                    className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                  >
+                    Discover
+                  </a>
                 </Link>
               </li>
-              <li className="mt-4 lg:mt-0">
-                <a
-                  href=""
-                  className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
-                >
-                  My Pondos
-                </a>
-              </li>
-              <li className="mt-8 lg:mt-0">
-                <a
-                  href=""
-                  className="py-3 px-4 text-center text-white bg-pondo-blue hover:bg-indigo-700 rounded-full shadow block lg:inline"
-                >
-                  Create a Pondo
-                </a>
-              </li>
+              <Link to={`/mypondos`}>
+                <li className="mt-4 lg:mt-0">
+                  <a
+                    href=""
+                    className="py-3 px-4 text-center text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0"
+                  >
+                    My Pondos
+                  </a>
+                </li>
+              </Link>
+              <Link to={`/create`}>
+                <li className="mt-8 lg:mt-0">
+                  <a
+                    href=""
+                    className="py-3 px-4 text-center text-white bg-pondo-blue hover:bg-indigo-700 rounded-full shadow block lg:inline"
+                  >
+                    Create a Pondo
+                  </a>
+                </li>
+              </Link>
             </ul>
           </div>
         </div>

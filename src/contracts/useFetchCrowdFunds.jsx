@@ -2,13 +2,12 @@ import { useState, useEffect } from "react";
 import { fetchCrowdFunds } from "./utils";
 import { fundFactoryContract } from "./constants";
 
-function useFetchCrowdFunds() {
+function useFetchCrowdFunds(tag, owner) {
   const [crowdFunds, setCrowdFunds] = useState();
 
   useEffect(() => {
     const get = async () => {
-      let data = await fetchCrowdFunds();
-      console.log(data);
+      let data = await fetchCrowdFunds(tag, owner);
       setCrowdFunds(data);
     };
 
@@ -17,12 +16,11 @@ function useFetchCrowdFunds() {
     fundFactoryContract.on(
       "CrowdFundPublished",
       async function (owner, contractAddress) {
-        console.log(owner);
-        console.log(contractAddress);
+        console.log("CrowdFundPublished");
         get();
       }
     );
-  }, []);
+  }, [tag]);
 
   return [crowdFunds, setCrowdFunds];
 }

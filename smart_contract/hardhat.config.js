@@ -6,4 +6,9 @@ module.exports = {
   paths: {
     artifacts: "./src/artifacts",
   },
+  networks: {
+    hardhat: {
+      allowUnlimitedContractSize: true,
+    },
+  },
 };

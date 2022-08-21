@@ -8,7 +8,7 @@ contract CrowdFund {
     uint public goal;
     bool public isActive = true;
     bool public goalReached = false;
-    string public tag;
+    bytes32 public tag;
     uint public donationCount;
 
     event Fund(address indexed _donor, uint value, uint balance);
@@ -19,7 +19,7 @@ contract CrowdFund {
         address _owner,
         string memory _metadataURI,
         uint _goal,
-        string memory _tag
+        bytes32 _tag
     ) {
         owner = payable(_owner);
         metadataURI = _metadataURI;
@@ -28,6 +28,7 @@ contract CrowdFund {
     }
 
     receive() external payable {
+        require(isActive);
         userFunds[msg.sender] += msg.value;
 
         emit Fund(msg.sender, msg.value, address(this).balance);
@@ -39,12 +40,14 @@ contract CrowdFund {
     }
 
     function cancelFund() external payable {
+        require(isActive);
         payable(msg.sender).transfer(userFunds[msg.sender]);
         userFunds[msg.sender] = 0;
     }
 
-    function withdraw() public payable {
-        payable(address(this)).transfer(address(this).balance);
+    function withdraw() external payable {
+        require(isActive);
+        owner.transfer(address(this).balance);
         isActive = false;
     }
 }

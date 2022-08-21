@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getCrowdFundDetails } from "../../contracts/utils";
 import DiscoverCardSkeleton from "./discover_card_skeleton";
 
-function DiscoverCard({ address }) {
+function DiscoverCard({ address, crowdFunds }) {
   const [crowdFundDetails, setCrowdFundDetails] = useState();
 
   useEffect(() => {
@@ -14,12 +14,11 @@ function DiscoverCard({ address }) {
     };
 
     get();
-  }, []);
+  }, [crowdFunds]);
 
   return (
     <>
-      {console.log(crowdFundDetails)}
-      {crowdFundDetails ? (
+      {crowdFundDetails && crowdFundDetails?.isActive ? (
         <Link to={`/crowdfund/${address}`} state={crowdFundDetails}>
           <div className="">
             <a href="#!">
