@@ -28,7 +28,7 @@
    In your prefered working directory open a terminal and type:
    <br><br>
   
-    https://github.com/m-visaya/pondo.git
+    git clone https://github.com/m-visaya/pondo.git
   
    <h3>Install the dependencies</h3>
    Install the frontend and backend modules
@@ -53,7 +53,7 @@
      ./smart-contract/npx hardhat run scripts/deploy.js --network localhost
 
 
-The commands above will assign the frontend url and creates a ethereum testnet in the local network, 10 test accounts is available for development use. Import these test accounts in a development wallet and start througth the frontend url 
+The commands above will assign a frontend url and creates a ethereum testnet in the local network, 10 test accounts is available for development use. Import these test accounts in a development wallet and start through the frontend url 
    
 </div>
 
