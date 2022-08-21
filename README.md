@@ -6,11 +6,11 @@
 </br>
 </br>
  Pondo (<i>n. suskrisyon, suskripsyon, bayad, pagpapahatid, pagpapadala</i>) is a decentralized crowdfunding application built on the ethereum network.
- It allows a trustless and transparent transaction between donors and beneficiearies all made posible through the smart contracts and the open nature of blockchain. 
+ It allows a trustless and transparent transaction between donors and beneficiearies all made possible through the smart contracts and the open nature of blockchain. 
  
 </div>
 <div>
-    <h2>Tools Used</h2>
+    <h2>Technologies Used</h2>
     <ul>
         <li><a href="https://github.com/ethers-io/ethers.js/">EthersJS</a></li>
         <li><a href="https://web3.storage/">Web3.Storage</a></li>
