@@ -11,8 +11,10 @@ export default function PondoCards({ address }) {
       const res = await getCrowdFundDetails(address);
       setCrowdFundDetails(res);
     };
+
     get();
   }, []);
+
   return (
     <Link to={`/crowdfund/${address}`} state={crowdFundDetails}>
       <div>
@@ -21,16 +23,16 @@ export default function PondoCards({ address }) {
             <a href="#!">
               <img
                 className="rounded-[20px] w-64"
-                src={crowdFundDetails.image}
+                src={crowdFundDetails?.image}
                 alt=""
               />
             </a>
             <div className="mx-2 mt-3">
               <h5 className="text-pondo-blue text-start leading-6 font-bold text-[16pt] mb-2">
-                {crowdFundDetails.json.title}
+                {crowdFundDetails?.json.title}
               </h5>
               <p className="text-pondo-blue text-start text-[12pt] mb-4">
-                ETH {crowdFundDetails.bal}of ETH {crowdFundDetails.goalParsed}
+                ETH {crowdFundDetails?.bal}of ETH {crowdFundDetails?.goalParsed}
               </p>
             </div>
           </div>
