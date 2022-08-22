@@ -1,6 +1,6 @@
 <div align="center">
   <img src="./src/assets/Pondo.png" alt="Pondo" height="70">
-  <h2>A crowdfunding for the open community.</h2>
+  <h2>A fully decentralized crowdfunding platform for the open community.</h2>
 </div>
  
 </br>
@@ -23,7 +23,7 @@
 </div>
 
 <div>
-   <h2>Compling Instructions</h2>
+   <h2>Local Development</h2>
    <h3>Clone the repository</h3>
    In your prefered working directory open a terminal and type:
    <br><br>
@@ -52,9 +52,8 @@
      ./smart-contract/npx hardhat node 
      ./smart-contract/npx hardhat run scripts/deploy.js --network localhost
 
+The commands above will assign a frontend url and creates a ethereum testnet in the local network, 10 test accounts is available for development use. Import these test accounts in a development wallet and start through the frontend url
 
-The commands above will assign a frontend url and creates a ethereum testnet in the local network, 10 test accounts is available for development use. Import these test accounts in a development wallet and start through the frontend url 
-   
 </div>
 
 <div>
